@@ -16,7 +16,7 @@ class GradeController extends Controller
     {
 
         $Grades = Grade::all();
-        return view('pages.grades.index' , compact('Grades'));
+        return view('pages.grades.index', compact('Grades'));
     }
 
     /**
@@ -32,6 +32,11 @@ class GradeController extends Controller
      */
     public function store(StoreGrades $request)
     {
+
+        if (Grade::where('Name->ar', $request->Name)->orWhere('Name->en', $request->Name_en)->exists()) {
+            return redirect()->back()->withErrors(['error' => trans('Grades_trans.exists')]);
+        }
+
         try {
             $request->validated();
 

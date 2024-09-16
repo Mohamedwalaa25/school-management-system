@@ -15,6 +15,7 @@ return [
     'submit' => 'submit',
     'Name'=>'Name',
     'Processes'=>'Processes',
+    'exists'=>'This field already exists',
     'Edit'=>'Edit',
     'Delete'=>'Delete',
     'Close' => 'Close',

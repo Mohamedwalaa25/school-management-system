@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassRooms\ClassRoomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::group(
     })->name('dashboard');
 
     Route::resource('grades', GradeController::class);
+    Route::resource('Classrooms', ClassRoomController::class);
+
 
 });
 
