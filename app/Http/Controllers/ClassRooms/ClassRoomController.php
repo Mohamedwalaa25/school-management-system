@@ -16,10 +16,10 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        $classrooms = ClassRoom::all();
+        $List_Classes = ClassRoom::all();
         $Grades = Grade::all();
 
-        return view('pages.ClassRooms.index', compact('classrooms', 'Grades'));
+        return view('pages.ClassRooms.index', compact('List_Classes', 'Grades'));
     }
 
     /**
@@ -98,5 +98,23 @@ class ClassRoomController extends Controller
         $classRoom->delete();
         toastr()->success(trans('messages.success'));
         return redirect()->route('Classrooms.index');
+    }
+
+    public function delete_all(Request $request)
+    {
+        $delete_all_id = explode(",", $request->delete_all_id);
+
+        Classroom::whereIn('id', $delete_all_id)->Delete();
+        toastr()->error(trans('messages.Delete'));
+        return redirect()->route('Classrooms.index');
+    }
+
+
+    public function Filter_Classes(Request $request)
+    {
+        $Grades = Grade::all();
+        $Search = Classroom::select('*')->where('Grade_id','=',$request->Grade_id)->get();
+        return view('pages.ClassRooms.index',compact('Grades'))->withDetails($Search);
+
     }
 }

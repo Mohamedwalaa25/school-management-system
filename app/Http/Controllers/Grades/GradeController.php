@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Grades;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGrades;
+use App\Models\ClassRoom;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 
@@ -101,12 +102,15 @@ class GradeController extends Controller
      */
     public function destroy(Grade $grade)
     {
-        try {
+        $classes = ClassRoom::where('Grade_id', $grade->id)->get();
+        if (count($classes) > 0) {
+            toastr()->error(trans('Grades_trans.delete_Grade_Error'));
+            return redirect()->route('grades.index');
+        }
+
             $grade->delete();
             toastr()->success(trans('messages.success'));
             return redirect()->route('grades.index');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+
     }
 }

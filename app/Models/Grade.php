@@ -22,4 +22,8 @@ class Grade extends Model
         return $this->hasMany(ClassRoom::class);
     }
 
+    public function Sections()  {
+        return $this->hasMany(Section::class , 'Grade_id');
+    }
+
 }

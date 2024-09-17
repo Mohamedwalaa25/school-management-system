@@ -19,4 +19,5 @@ return [
     'Edit'=>'Edit',
     'Delete'=>'Delete',
     'Close' => 'Close',
+    'delete_Grade_Error'=>'The grade cannot be deleted because it contains classes',
 ];
