@@ -8,6 +8,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.5",
         "mcamara/laravel-localization": "^2.0",
         "openai-php/client": "^0.10.1",
         "spatie/laravel-translatable": "^6.8",
