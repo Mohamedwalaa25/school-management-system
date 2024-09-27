@@ -155,6 +155,7 @@ return [
     | on the page. If you want Bootstrap CSS, you can specify: "bootstrap"
     |
     */
+//    'asset_url' => 'http://localhost/school-management-system/public',
 
     'pagination_theme' => 'tailwind',
 ];

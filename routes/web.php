@@ -4,7 +4,9 @@ use App\Http\Controllers\ClassRooms\ClassRoomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Sections\SectionController;
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['middleware' => ['guest']], function () {
@@ -18,6 +20,9 @@ Route::group(
     ['prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
     ], function () {
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post('/livewire/update', $handle);
+    });
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -31,6 +36,7 @@ Route::group(
     Route::resource('Sections', SectionController::class);
     Route::get('classes/{id}', [SectionController::class, 'getclasses'])->name('classes');
 
+         Route::view('/add-parent','livewire.show-form')->name('add-parent');
 
 });
 
